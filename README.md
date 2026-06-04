@@ -16,7 +16,7 @@ npm run typecheck
 npm run build
 ```
 
-Output goes to `dist/`. Netlify is configured via `netlify.toml`.
+Output goes to `dist/`. Deployed as a container — `Dockerfile` builds an nginx image published to `ghcr.io/beep-platforms/home` and served on the tailnet at `https://home.tail699d2d.ts.net/` (canonical brand: skillcraft.codes).
 
 ## Editing content
 

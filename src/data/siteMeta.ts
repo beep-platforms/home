@@ -10,11 +10,11 @@ export interface SiteMeta {
 }
 
 export const siteMeta: SiteMeta = {
-  canonicalUrl: "https://arriw.netlify.app",
+  canonicalUrl: "https://skillcraft.codes",
   themeColor: "#09090b",
   title: `${profile.siteTitle} — ${profile.name}`,
   description:
-    "Personal site for Arrington Walters — process engineer, statistician, gamer, baker, explorer.",
+    "Personal site for Arrington Walters — systems engineer, baker, gamer.",
   ogImagePath: profile.photoUrl,
 };
 
