@@ -14,8 +14,8 @@ export function Nav({ profile }: NavProps) {
   const links: readonly NavLink[] = [
     { label: "about", href: "#about" },
     { label: "writing", href: "#writing" },
+    { label: "series", href: "/the-quiet-parts" },
     { label: "repos", href: "#repos" },
-    { label: "resume", href: profile.resumeUrl, external: true },
     { label: "contact", href: "#contact" },
   ];
 
