@@ -42,7 +42,6 @@ export const profile: ProfileData = {
   resumeUrl: "https://registry.jsonresume.org/arriw/",
   emails: [
     { label: "personal", address: "arrington.walters@gmail.com" },
-    { label: "work", address: "arwalters@tesla.com" },
   ],
   social: [
     { name: "GitHub", url: "https://github.com/ArriW", handle: "ArriW" },
