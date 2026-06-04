@@ -52,5 +52,5 @@ export const profile: ProfileData = {
     },
     { name: "Twitch", url: "https://www.twitch.tv/conjura", handle: "conjura" },
   ],
-  featuredRepoNames: [],
+  featuredRepoNames: ["deckdeep", "betbug-releases", "skillcraft"],
 };
