@@ -17,7 +17,11 @@ export function About({ profile }: AboutProps) {
           className="h-64 w-auto rounded-lg border border-zinc-800/80 object-cover shadow-lg shadow-black/40"
         />
         <div className="flex-1">
-          <p className="leading-relaxed text-zinc-300">{profile.bio}</p>
+          <div className="flex flex-col gap-4 leading-relaxed text-zinc-300">
+            {profile.bio.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
           <div className="mt-6">
             <SocialLinks links={profile.social} />
           </div>

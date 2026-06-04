@@ -14,7 +14,7 @@ export interface ProfileData {
   readonly handle: string;
   readonly siteTitle: string;
   readonly tagline: string;
-  readonly bio: string;
+  readonly bio: readonly string[];
   readonly photoUrl: string;
   readonly photoAlt: string;
   readonly githubUsername: string;
@@ -29,8 +29,13 @@ export const profile: ProfileData = {
   handle: "AW",
   siteTitle: "Skillcraft.Codes",
   tagline:
-    "Process Engineer at Tesla's Gigafactory 1. My work is focused on sustaining Tesla's Energy products lines. My skills are focused on applications of Lean Six Sigma and statistics. This is my home for my professional and creative interests.",
-  bio: "Ive spent most of my years in Maryland, before moving to Nevada. I am a gamer, baker, statistician, and a explorer.",
+    "Sr. Systems Engineer at Tesla Energy. I work on the test, firmware, and observability infrastructure behind Powerwall and Megapack. This is where my professional and creative work lives.",
+  bio: [
+    "I help scale Tesla's disaster-relief program — coordinating where Tesla's portable batteries are deployed in response to hurricanes, floods, and other natural disasters.",
+    "My core role is systems engineering across Powerwall and Megapack — owning end-to-end product behavior across firmware, hardware, and software.",
+    "I grew up in Maryland, started my career in Nevada, and now live in San Francisco. Before Tesla I worked on forging and furnace optimization at an aerospace plant. I joined Tesla as a process engineer on the Powerwall line, moved into manufacturing firmware as the product family scaled, and now work in systems engineering.",
+    "Outside of work I build hobby software, run a homelab, and print Gridfinity organizers, tabletop minis, and the occasional household fix on my Bambu. I bake, read fantasy, and stream occasionally on Twitch as conjura.",
+  ],
   photoUrl: "/assets/redwoods_0.png",
   photoAlt: "Arrington Walters in the redwoods",
   githubUsername: "ArriW",
