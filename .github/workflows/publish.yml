@@ -13,7 +13,54 @@ env:
   IMAGE:    ${{ github.repository }}   # arriw/home
 
 jobs:
+  # Pre-cutover smoke gate (w3-2 Track 5). Build the prod image, run it, assert
+  # the SPA renders + ships its security headers. `build` needs this, so a
+  # header/render regression blocks the GHCR push before any DNS cutover.
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci --no-audit --no-fund
+
+      - run: npx playwright install --with-deps chromium
+
+      - name: build site image
+        run: docker build -t beep-home:smoke .
+
+      - name: run site image on :8080
+        run: docker run -d --name home-smoke -p 8080:8080 beep-home:smoke
+
+      - name: wait for site to answer
+        run: |
+          for i in $(seq 1 30); do
+            curl -fsS http://localhost:8080/ >/dev/null 2>&1 && exit 0
+            sleep 2
+          done
+          echo "site never came up"; docker logs home-smoke; exit 1
+
+      - name: assert security headers present
+        run: |
+          curl -sI http://localhost:8080/ | tee /tmp/headers.txt
+          grep -iq '^x-content-type-options: nosniff'        /tmp/headers.txt
+          grep -iq '^x-frame-options: DENY'                  /tmp/headers.txt
+          grep -iq '^referrer-policy: strict-origin-when-cross-origin' /tmp/headers.txt
+          grep -iq '^content-security-policy:.*default-src .self.' /tmp/headers.txt
+
+      - name: run playwright smoke
+        run: npm run test:smoke
+
+      - name: teardown
+        if: always()
+        run: docker rm -f home-smoke || true
+
   build:
+    needs: smoke   # <-- gate the GHCR push on a green pre-cutover smoke
     runs-on: ubuntu-latest
     permissions:
       contents: read
