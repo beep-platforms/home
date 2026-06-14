@@ -1,0 +1,56 @@
+# Pre-cutover smoke (w3-2 Track 5), PR-time feedback edition. Builds the
+# production image, runs it, asserts the SPA renders + ships its security
+# headers. On master push / tags the SAME gate runs as the `smoke` job inside
+# publish.yml (which `build` needs:), so the GHCR push is blocked on a green
+# smoke there — this file just surfaces the same check on pull requests.
+name: smoke
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: install deps
+        run: npm ci --no-audit --no-fund
+
+      - name: install playwright chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: build site image
+        run: docker build -t beep-home:smoke .
+
+      - name: run site image on :8080
+        run: docker run -d --name home-smoke -p 8080:8080 beep-home:smoke
+
+      - name: wait for site to answer
+        run: |
+          for i in $(seq 1 30); do
+            curl -fsS http://localhost:8080/ >/dev/null 2>&1 && exit 0
+            sleep 2
+          done
+          echo "site never came up"; docker logs home-smoke; exit 1
+
+      - name: assert security headers present
+        run: |
+          curl -sI http://localhost:8080/ | tee /tmp/headers.txt
+          grep -iq '^x-content-type-options: nosniff'        /tmp/headers.txt
+          grep -iq '^x-frame-options: DENY'                  /tmp/headers.txt
+          grep -iq '^referrer-policy: strict-origin-when-cross-origin' /tmp/headers.txt
+          grep -iq '^content-security-policy:.*default-src .self.' /tmp/headers.txt
+
+      - name: run playwright smoke
+        run: npm run test:smoke
+
+      - name: teardown
+        if: always()
+        run: docker rm -f home-smoke || true
