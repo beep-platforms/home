@@ -11,6 +11,14 @@ interface Article {
 
 const articles: readonly Article[] = [
   {
+    slug: "/the-quiet-parts",
+    title: "The Quiet Parts",
+    dek: "A four-part, evidence-first video essay series on the questions institutions made unsayable — crime, a presidency, public health, and medicine.",
+    date: "2026 · In production",
+    readingTime: "4 episodes",
+    tag: "Video Series",
+  },
+  {
     slug: "/skillcraft-regression",
     title: "What Makes a StarCraft Player Skilled?",
     dek: "Twenty in-game metrics, three thousand ranked players, and the awkward truth that speed isn't everything.",
