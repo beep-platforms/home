@@ -6,3 +6,4 @@ dist/
 !.env.example
 *.tsbuildinfo
 autoresearch/
+__pycache__/

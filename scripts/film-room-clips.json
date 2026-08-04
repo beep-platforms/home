@@ -1,0 +1,177 @@
+[
+  {
+    "videoId": "QGwAUV4bdIw",
+    "title": "Interface: Hotkeys and Control Groups (Beginner's Guide #2)",
+    "queries": [
+      { "label": "control groups", "keywords": ["control group", "hotkey", "bind"] },
+      { "label": "camera and heroes", "keywords": ["camera", "f1", "backspace"] }
+    ]
+  },
+  {
+    "videoId": "XHSwTMD1Zxk",
+    "title": "Economy: Gold, Lumber and Upkeep (Beginner's Guide #3)",
+    "queries": [
+      { "label": "upkeep brackets", "keywords": ["upkeep", "50 food", "tax"] }
+    ]
+  },
+  {
+    "videoId": "hTzu5i4F3lU",
+    "title": "Heroes: XP, Abilities and Spells (Beginner's Guide #4)",
+    "queries": [
+      { "label": "hero levels", "keywords": ["level 3", "experience", "creep for"] }
+    ]
+  },
+  {
+    "videoId": "V1MyCsxwFxU",
+    "title": "NEW Human Beginner's Guide",
+    "queries": [
+      { "label": "build order", "keywords": ["altar", "barracks", "blacksmith", "farm"] },
+      { "label": "riflemen and priests", "keywords": ["rifle", "priest", "sanctum"] }
+    ]
+  },
+  {
+    "videoId": "Du7w2TQOesU",
+    "title": "Human Guide — From Theory to Practice",
+    "queries": [
+      { "label": "applying the build", "keywords": ["build order", "rifle", "keep"] }
+    ]
+  },
+  {
+    "videoId": "XL3rpBSeEQM",
+    "title": "The Easiest Beginner Build",
+    "queries": [
+      { "label": "the build", "keywords": ["altar", "farm", "barracks"] }
+    ]
+  },
+  {
+    "videoId": "OD8CElxqFzA",
+    "title": "Human Base Layout Tutorial",
+    "queries": [
+      { "label": "placement", "keywords": ["placement", "wall", "tower", "layout"] }
+    ]
+  },
+  {
+    "videoId": "1AzS8Erf3go",
+    "title": "Grubby Refines Guzu's Pala Rifle Strategy",
+    "queries": [
+      { "label": "pala rifle plan", "keywords": ["paladin", "rifle", "blood mage", "holy light"] },
+      { "label": "timings", "keywords": ["timing", "push", "level 3"] }
+    ]
+  },
+  {
+    "videoId": "YMUTzguoT3o",
+    "title": "Early Game: Creeping and Build Orders (Beginner's Guide #6)",
+    "queries": [
+      { "label": "safe creeping", "keywords": ["creep", "camp", "safe"] },
+      { "label": "build order", "keywords": ["build order", "supply"] }
+    ]
+  },
+  {
+    "videoId": "jWnalz1L0bM",
+    "title": "The Importance of Creeping",
+    "queries": [
+      { "label": "why creep", "keywords": ["creep", "experience", "item"] }
+    ]
+  },
+  {
+    "videoId": "k-gCz2MLW8o",
+    "title": "Planning Your Route with Creep Orders",
+    "queries": [
+      { "label": "pulling camps", "keywords": ["pull", "aggro", "whole camp"] },
+      { "label": "route order", "keywords": ["route", "order", "green", "orange"] }
+    ]
+  },
+  {
+    "videoId": "KB2XoveGeYA",
+    "title": "Planning Late Game Creep Routes",
+    "queries": [
+      { "label": "late routes", "keywords": ["route", "late", "camp"] }
+    ]
+  },
+  {
+    "videoId": "5Fesan4GNVc",
+    "title": "How to Micro Better?",
+    "queries": [
+      { "label": "focus fire", "keywords": ["focus", "target", "overkill"] },
+      { "label": "hero dancing", "keywords": ["hero", "back", "retreat"] }
+    ]
+  },
+  {
+    "videoId": "kSuBzZ2DSvE",
+    "title": "Short Game with Micro & Macro Guide",
+    "queries": [
+      { "label": "macro loop", "keywords": ["macro", "worker", "production"] }
+    ]
+  },
+  {
+    "videoId": "rD1hmcFzp0U",
+    "title": "Micro Tips to Harstem (Coaching #6)",
+    "queries": [
+      { "label": "micro tricks", "keywords": ["focus", "surround", "position"] }
+    ]
+  },
+  {
+    "videoId": "rkD3c-qLOXs",
+    "title": "Army: Countering Units; Damage & Armor Types (Beginner's Guide #5)",
+    "queries": [
+      { "label": "armor table", "keywords": ["piercing", "armor", "counter"] }
+    ]
+  },
+  {
+    "videoId": "snMLlE7pXbc",
+    "title": "Undead Bloody Beginner Guide",
+    "queries": [
+      { "label": "undead plan", "keywords": ["ghoul", "fiend", "death knight"] }
+    ]
+  },
+  {
+    "videoId": "0-zQThzPwTc",
+    "title": "Orc Bloody Beginner Guide",
+    "queries": [
+      { "label": "orc plan", "keywords": ["grunt", "far seer", "shaman"] }
+    ]
+  },
+  {
+    "videoId": "l_3HljSUjjc",
+    "title": "Night Elf Bloody Beginner Guide",
+    "queries": [
+      { "label": "night elf plan", "keywords": ["hunt", "demon hunter", "dryad"] }
+    ]
+  },
+  {
+    "videoId": "8iW1a9lfGdo",
+    "title": "Ultimate Human Guide: Beginner & Intermediate",
+    "queries": [
+      { "label": "human roadmap", "keywords": ["expand", "caster", "breaker"] }
+    ]
+  },
+  {
+    "videoId": "e5xTD-H9D-g",
+    "title": "60 APM Game and Then 600 APM Game",
+    "queries": [
+      { "label": "apm difference", "keywords": ["apm", "decision", "speed"] }
+    ]
+  },
+  {
+    "videoId": "4dQ96VI0bBM",
+    "title": "WC3 Hero Spotlight: The Archmage",
+    "queries": [
+      { "label": "water elemental", "keywords": ["elemental", "summon", "tank"] },
+      { "label": "brilliance", "keywords": ["brilliance", "aura", "mana"] }
+    ]
+  },
+  {
+    "videoId": "4fwM2GGzq9k",
+    "title": "Rush to Level 3 Archmage",
+    "queries": [
+      { "label": "am leveling", "keywords": ["level 3", "elemental", "creep"] }
+    ]
+  },
+  {
+    "videoId": "Gfn7gmS8eeg",
+    "title": "Getting Started (Beginner's Guide #1)",
+    "queries": [
+      { "label": "where to play", "keywords": ["w3champions", "ladder", "install"] }
+    ]
+  }
+]
