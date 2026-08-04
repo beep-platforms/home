@@ -23,3 +23,14 @@ test("home renders and ships security headers", async ({ page }) => {
   // Hero renders the owner's name (data/profile.ts -> Hero).
   await expect(page.getByText("Arrington").first()).toBeVisible();
 });
+
+test("guide route renders via the SPA fallback", async ({ page }) => {
+  const resp = await page.goto(`${BASE_URL}/wc3-pala-rifle-mastery`);
+  expect(resp, "no response from the guide route").not.toBeNull();
+  // nginx try_files must serve index.html for client routes, not 404.
+  expect(resp!.status()).toBe(200);
+
+  await expect(
+    page.getByRole("heading", { name: /Pala Rifle/i }).first(),
+  ).toBeVisible();
+});

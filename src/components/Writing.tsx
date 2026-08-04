@@ -11,6 +11,14 @@ interface Article {
 
 const articles: readonly Article[] = [
   {
+    slug: "/wc3-pala-rifle-mastery",
+    title: "Pala Rifle to Mastery",
+    dek: "A five-phase training plan for Human's Paladin–Riflemen strategy — drills, measurable exit gates, a plateau diagnosis, and the graduation path to Archmage standard.",
+    date: "August 4, 2026",
+    readingTime: "14 min read",
+    tag: "Guide · Warcraft III",
+  },
+  {
     slug: "/skillcraft-regression",
     title: "What Makes a StarCraft Player Skilled?",
     dek: "Twenty in-game metrics, three thousand ranked players, and the awkward truth that speed isn't everything.",
