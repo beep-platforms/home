@@ -33,4 +33,9 @@ test("guide route renders via the SPA fallback", async ({ page }) => {
   await expect(
     page.getByRole("heading", { name: /Pala Rifle/i }).first(),
   ).toBeVisible();
+
+  // Film room renders; clips are click-to-load so no iframe exists yet.
+  await page.getByRole("heading", { name: /Grubby's tape/i }).scrollIntoViewIfNeeded();
+  await expect(page.getByRole("button", { name: /^Play:/ }).first()).toBeVisible();
+  expect(await page.locator("iframe").count()).toBe(0);
 });

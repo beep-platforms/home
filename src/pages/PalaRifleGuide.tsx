@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { filmRoom, type FilmClip, type GuidePhase } from "../data/filmRoom";
 
 // Gate checkboxes persist in localStorage so the guide works as a training
 // tracker across visits. All GateList instances share one key; toggle()
@@ -498,6 +499,124 @@ function Body() {
             </li>
           </ol>
         </PhaseSection>
+
+        <FilmRoom />
+      </div>
+    </div>
+  );
+}
+
+const PHASE_GROUPS: readonly { key: GuidePhase; title: string }[] = [
+  { key: "cockpit", title: "Phase 0 · The cockpit" },
+  { key: "build-order", title: "Phase 1 · The script" },
+  { key: "creeping", title: "Phase 2 · The map" },
+  { key: "fight-micro", title: "Phase 3 · The fight" },
+  { key: "matchups", title: "Phase 4 · The opponents" },
+  { key: "mastery", title: "Phase 5 · The bar" },
+  { key: "archmage-graduation", title: "Phase 6 · Graduation" },
+];
+
+function FilmRoom() {
+  return (
+    <PhaseSection index="Film room" title="Grubby's tape, phase by phase">
+      <p>
+        Nobody has taught more of this curriculum on camera than Grubby. Each
+        clip below is mapped to the phase it serves — watch the one attached
+        to the gate you're currently failing, not all of them at once. Clips
+        load only when you press play (nothing is fetched from YouTube until
+        then); entries with a time span jump straight to the relevant moment.
+      </p>
+      {PHASE_GROUPS.map((group) => {
+        const clips = filmRoom.filter((c) => c.phase === group.key);
+        if (clips.length === 0) return null;
+        return (
+          <div key={group.key} className="flex flex-col gap-3">
+            <p className="mt-2 font-mono text-[0.65rem] uppercase tracking-[0.25em] text-zinc-500">
+              {group.title}
+            </p>
+            {clips.map((clip) => (
+              <ClipCard key={`${clip.videoId}-${clip.start ?? 0}`} clip={clip} />
+            ))}
+          </div>
+        );
+      })}
+    </PhaseSection>
+  );
+}
+
+function formatTime(totalSeconds: number): string {
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  return `${minutes}:${String(seconds).padStart(2, "0")}`;
+}
+
+interface ClipCardProps {
+  readonly clip: FilmClip;
+}
+
+function ClipCard({ clip }: ClipCardProps) {
+  const [playing, setPlaying] = useState(false);
+
+  const params = new URLSearchParams({ rel: "0", autoplay: "1" });
+  if (clip.start !== undefined) params.set("start", String(clip.start));
+  if (clip.end !== undefined) params.set("end", String(clip.end));
+  const embedUrl = `https://www.youtube-nocookie.com/embed/${clip.videoId}?${params.toString()}`;
+  const watchUrl =
+    clip.start !== undefined
+      ? `https://www.youtube.com/watch?v=${clip.videoId}&t=${clip.start}s`
+      : `https://www.youtube.com/watch?v=${clip.videoId}`;
+
+  const spanChip =
+    clip.start !== undefined && clip.end !== undefined
+      ? `${formatTime(clip.start)}–${formatTime(clip.end)}`
+      : clip.start !== undefined
+        ? `from ${formatTime(clip.start)}`
+        : "full video";
+
+  return (
+    <div className="rounded-lg border border-zinc-800 bg-zinc-900/40 p-4">
+      {playing ? (
+        <iframe
+          className="aspect-video w-full rounded-md border-0"
+          src={embedUrl}
+          title={clip.title}
+          allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+          allowFullScreen
+        />
+      ) : null}
+      <div className={`flex items-start gap-4 ${playing ? "mt-3" : ""}`}>
+        {playing ? null : (
+          <button
+            type="button"
+            onClick={() => setPlaying(true)}
+            aria-label={`Play: ${clip.title}`}
+            className="flex h-11 w-11 flex-none items-center justify-center rounded-full border border-amber-400/40 text-amber-300 transition hover:border-amber-400 hover:bg-amber-400/10"
+          >
+            <span aria-hidden className="translate-x-px text-sm">▶</span>
+          </button>
+        )}
+        <div className="min-w-0">
+          <p className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+            <span className="font-serif text-lg font-medium leading-snug text-zinc-100">
+              {clip.title}
+            </span>
+            <span className="font-mono text-[0.65rem] uppercase tracking-[0.15em] text-amber-400">
+              {clip.spanLabel ? `${clip.spanLabel} · ` : ""}
+              {spanChip}
+            </span>
+          </p>
+          <p className="mt-1 text-base leading-relaxed text-zinc-400">
+            {clip.topic}{" "}
+            <a
+              href={watchUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="whitespace-nowrap font-mono text-xs text-zinc-500 underline-offset-2 transition hover:text-amber-400 hover:underline"
+            >
+              watch on YouTube ↗
+            </a>
+          </p>
+        </div>
       </div>
     </div>
   );
